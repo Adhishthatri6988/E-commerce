@@ -1,4 +1,4 @@
-import { useContext , useState} from 'react';
+import { use, useContext , useState} from 'react';
 import { ShopContext } from '../context/ShopContext';
 import {assets} from "../assets/frontend_assets/assets.js";
 import Title from '../components/Title.jsx';
@@ -14,6 +14,7 @@ const collection = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [SubCategory, setSubCategory] = useState([]);
+  const [sortType, setSortType] = useState('relevant');
 
   const toggleCategory = (e) => {
     if(category.includes(e.target.value)){
@@ -45,10 +46,28 @@ const collection = () => {
     setFilteredProducts(productCopy);
   }
 
+  
+  const sortProducts = () => {
+    let fpCopy = filteredProducts.slice();
+    switch(sortType) {
+      case 'low-high':
+        setFilteredProducts(fpCopy.sort((a, b) => a.price - b.price));
+        break;
+      case 'high-low':
+        setFilteredProducts(fpCopy.sort((a, b) => b.price - a.price));
+        break;
+      default:
+        applyFilter() ;
+  }
+}
 
   useEffect (() => {
     applyFilter();
   }, [category, SubCategory]);
+
+  useEffect(() => {
+    sortProducts();
+  }, [sortType]);
 
 
   return (
@@ -108,7 +127,7 @@ const collection = () => {
         <div className='flex justify-between mb-4 text-base sm:text-2xl'>
           <Title text1='ALL' text2='COLLECTIONS' />
           {/* Sort By */}
-          <select className='border-2 border-gray-300  px-2  text-sm '>
+          <select onChange={(e) => setSortType(e.target.value)} className='border-2 border-gray-300  px-2  text-sm '>
             <option value="relevant">Sort By: Relevant</option>
             <option value="low-high">Sort By: Low to High</option>
             <option value="high-low">Sort By: High to Low</option>

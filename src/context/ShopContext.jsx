@@ -1,6 +1,8 @@
 import { createContext } from 'react';
 import { products } from '../assets/frontend_assets/assets';
 export const ShopContext = createContext(null);
+import { useState } from 'react';
+
 
 const ShopContextProvider = (props) => {
 
@@ -12,7 +14,7 @@ const ShopContextProvider = (props) => {
   const Value = {
     // Define your context values here
     products , currency, delivery_fee,
-    search, setSearch, showSearch, setShowSearch
+    search, setSearch, showSearch, setShowSearch,
   };
   return (
     <ShopContext.Provider value={Value}>

@@ -45,10 +45,6 @@ const collection = () => {
     setFilteredProducts(productCopy);
   }
 
-    useEffect(() => {
-    // Fetch products from the context or API
-    setFilteredProducts(products);
-  }, []);
 
   useEffect (() => {
     applyFilter();

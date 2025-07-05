@@ -1,11 +1,11 @@
 import { useState , useContext, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
-
+import {assets} from "../assets/frontend_assets/assets.js";
 
 const Product = () => {
   const {productId} = useParams();
-  const {products} = useContext(ShopContext);
+  const {products , currency} = useContext(ShopContext);
   const [productData , setProductData] = useState(false);
   const [image , setImage] = useState('');
 
@@ -41,8 +41,21 @@ const Product = () => {
             <div className='w-full sm:w-[80%]'>
               <img src={image} alt='' className='w-full h-auto'></img>
             </div>
-
           </div>
+                {/*Product info */}
+                <div className='flex-1'>
+                <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
+                <div className='flex items-center gap-1 mt-2'>
+                  <img src={assets.star_icon} alt="" className="w-3 5" />
+                  <img src={assets.star_icon} alt="" className="w-3 5" />
+                  <img src={assets.star_icon} alt="" className="w-3 5" />
+                  <img src={assets.star_icon} alt="" className="w-3 5" />
+                  <img src={assets.star_dull_icon} alt="" className="w-3 5" />
+                  <p className='p1-2'>(122)</p>
+                </div>
+                <p className='mt-5 text-3xl font-medium'>{currency} {productData.price}</p>
+                <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
+                </div>
 
         </div>
     </div>

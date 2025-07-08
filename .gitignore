@@ -22,4 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
 assets
+.env
+>>>>>>> eaa8c3c (Initial commit)

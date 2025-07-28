@@ -108,7 +108,11 @@ const getCartCount = () => {
    getProductsData()
   }, [])
 
-
+  useEffect(()=>{
+    if(!token && localStorage.getItem('token')){
+      setToken(localStorage.getItem('token'))
+    }
+  },[])
 
 
   const Value = {

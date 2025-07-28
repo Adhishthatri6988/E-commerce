@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
@@ -34,15 +34,23 @@ const Login = () => {
           toast.error(response.data.message);
         }
 
-
       }
-
 
     } catch (error) {
       console.log(error)
       toast.error(error.message)
     }
   }
+
+
+  useEffect(() => {
+
+    if(token){
+      navigate('/')
+    }
+
+  }, [token])
+
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
       <div className='inline-flex items-center gap-2 mb-2 mt-10' >

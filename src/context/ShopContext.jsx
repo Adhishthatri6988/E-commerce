@@ -136,6 +136,25 @@ const getCartCount = () => {
     }
   }
   
+  const getUserCart = async (token) => {
+    
+      try {
+        const response = await axios.post(backendUrl + '/api/cart/get',{}, {
+          headers: {
+            token
+          }
+        });
+        if(response.data.success) {
+          setCartItems(response.data.cartData);
+        } else {
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
+  
 
   useEffect(() => {
    getProductsData()
@@ -144,10 +163,11 @@ const getCartCount = () => {
   useEffect(()=>{
     if(!token && localStorage.getItem('token')){
       setToken(localStorage.getItem('token'))
+      getUserCart(localStorage.getItem('token'));
     }
   },[])
 
-
+  
   const Value = {
     // Define your context values here
     products , currency, delivery_fee,

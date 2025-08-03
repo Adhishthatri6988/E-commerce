@@ -172,7 +172,7 @@ const getCartCount = () => {
     // Define your context values here
     products , currency, delivery_fee,
     search, setSearch, showSearch, setShowSearch,
-    cartItems , addToCart ,
+    cartItems , addToCart ,setCartItems,
     getCartCount ,  updateQuantity,
     getCartAmount , navigate ,backendUrl ,
     setToken , token,

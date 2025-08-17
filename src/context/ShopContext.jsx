@@ -112,7 +112,8 @@ const getCartCount = () => {
           
         } catch (error)
         {
-          
+          console.log(error);
+          toast.error(error.message);
         }
       }
     }
@@ -166,7 +167,6 @@ const getCartCount = () => {
       getUserCart(localStorage.getItem('token'));
     }
   },[])
-
   
   const Value = {
     // Define your context values here
